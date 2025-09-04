@@ -1,0 +1,49 @@
+version: 2
+
+sources:
+  - name: raw
+    schema: raw
+    tables:
+      - name: raw_mgas
+        description: "Raw MGAs feed ingested from source system"
+        columns:
+          - name: mga_id
+            description: "Unique identifier for the MGA"
+          - name: mga_name
+            description: "Name of the MGA"
+          - name: country
+            description: "Country code of the MGA"
+          - name: email
+            description: "Contact email"
+          - name: phone
+            description: "Contact phone number"
+          - name: active_flag
+            description: "Flag indicating if MGA is active"
+          - name: created_at
+            description: "Record creation timestamp"
+          - name: updated_at
+            description: "Record update timestamp"
+
+models:
+  - name: silver_mgas   # <-- name of your .sql file (without extension)
+    description: "Cleaned MGAs model built from raw_mgas"
+    columns:
+      - name: mga_id
+        description: "Unique identifier for the MGA"
+        tests:
+          - not_null
+          - unique
+      - name: mga_name
+        description: "Name of the MGA"
+      - name: country
+        description: "Country code of the MGA"
+      - name: email
+        description: "Contact email address"
+      - name: phone
+        description: "Contact phone number"
+      - name: active_flag
+        description: "Flag indicating if MGA is active"
+      - name: created_at
+        description: "Timestamp when record was created"
+      - name: updated_at
+        description: "Timestamp when record was last updated"
